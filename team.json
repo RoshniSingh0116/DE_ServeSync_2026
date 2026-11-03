@@ -1,0 +1,11 @@
+{
+  "team_number": "008",
+  "group_lead": { "name": "Roshni Singh", "enrollment_no": "2501010665", "github": "RoshniSingh0116" },
+  "members": [
+    { "name": "Madhav Khandelwal", "enrollment_no": "2501010251", "github": "Madhav-007" },
+    { "name": "Tishika Arora", "enrollment_no": "2501010552", "github": "tishika25552-sys" },
+    { "name": "Mahabir Shaw", "enrollment_no": "2501010253", "github": "mahabirshaw" }
+  ],
+  "postgres_version": "18.6",
+  "laptop_used_for_benchmarks": "MacBook Pro, Apple M4, 16GB RAM"
+}
