@@ -22,12 +22,12 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | Roshni Singh|2501010665 |RoshniSingh0116 |
+| Member 2 |Madhav Khandelwal | 2501010251| Madhav-007|
+| Member 3 | Tishika Arora| |2501010552 |tishika25552-sys|
+| Member 4 |Mahabir Shaw |2501010253 | mahabirshaw|
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.: 008 · **Section:D · **Repository URL:** https://github.com/RoshniSingh0116/DE_ServeSync_2026
 
 ---
 
