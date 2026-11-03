@@ -24,7 +24,7 @@
 |------|------|----------------|-----------------|
 | Group Lead | Roshni Singh|2501010665 |RoshniSingh0116 |
 | Member 2 |Madhav Khandelwal | 2501010251| Madhav-007|
-| Member 3 | Tishika Arora| |2501010552 |tishika25552-sys|
+| Member 3 |Tishika Arora | 2501010552| tishika25552-sys|
 | Member 4 |Mahabir Shaw |2501010253 | mahabirshaw|
 
 **Team No.: 008 · **Section:D · **Repository URL:** https://github.com/RoshniSingh0116/DE_ServeSync_2026
