@@ -1,3 +1,7 @@
+CREATE SCHEMA IF NOT EXISTS spotify;
+
+SET search_path TO spotify;
+
 
 -- 1. USERS TABLE
 CREATE TABLE users (
@@ -7,7 +11,10 @@ CREATE TABLE users (
     country_code CHAR(2),
     birth_date DATE,
     subscription VARCHAR(30),
-    created_at TIMESTAMPTZ
+    created_at TIMESTAMPTZ,
+
+    CHECK (email LIKE '%@%._%'),
+    CHECK (country_code IS NULL OR country_code ~ '^[A-Z]{2}$')
 );
 
 
@@ -19,7 +26,10 @@ CREATE TABLE artists (
     primary_genre VARCHAR(100),
     is_verified BOOLEAN,
     monthly_listeners INT,
-    created_at TIMESTAMPTZ
+    created_at TIMESTAMPTZ,
+
+    CHECK (country_code IS NULL OR country_code ~ '^[A-Z]{2}$'),
+    CHECK (monthly_listeners IS NULL OR monthly_listeners >= 0)
 );
 
 
@@ -34,7 +44,14 @@ CREATE TABLE albums (
     upc BIGINT,
 
     FOREIGN KEY (artist_id)
-        REFERENCES artists(artist_id)
+        REFERENCES artists(artist_id),
+
+    CHECK (LENGTH(TRIM(album_title)) > 0),
+    CHECK (
+        album_type IS NULL OR
+        album_type IN ('ALBUM', 'EP', 'SINGLE', 'COMPILATION')
+    ),
+    CHECK (upc IS NULL OR upc::TEXT ~ '^[0-9]{12}$')
 );
 
 
@@ -51,7 +68,13 @@ CREATE TABLE tracks (
     popularity INT,
 
     FOREIGN KEY (album_id)
-        REFERENCES albums(album_id)
+        REFERENCES albums(album_id),
+
+    CHECK (disc_no IS NULL OR disc_no >= 1),
+    CHECK (track_no IS NULL OR track_no >= 1),
+    CHECK (duration_ms IS NULL OR duration_ms > 0),
+    CHECK (isrc IS NULL OR isrc ~ '^[A-Za-z0-9]{12}$'),
+    CHECK (popularity IS NULL OR popularity BETWEEN 0 AND 100)
 );
 
 
@@ -65,7 +88,9 @@ CREATE TABLE playlists (
     created_at TIMESTAMPTZ,
 
     FOREIGN KEY (owner_user_id)
-        REFERENCES users(user_id)
+        REFERENCES users(user_id),
+
+    CHECK (LENGTH(TRIM(name)) > 0)
 );
 
 
@@ -118,7 +143,9 @@ CREATE TABLE playlist_tracks (
         REFERENCES tracks(track_id),
 
     FOREIGN KEY (added_by_user_id)
-        REFERENCES users(user_id)
+        REFERENCES users(user_id),
+
+    CHECK (position >= 1)
 );
 
 
@@ -134,7 +161,9 @@ CREATE TABLE track_artists (
         REFERENCES tracks(track_id),
 
     FOREIGN KEY (artist_id)
-        REFERENCES artists(artist_id)
+        REFERENCES artists(artist_id),
+
+    CHECK (role IS NULL OR LENGTH(TRIM(role)) > 0)
 );
 
 
@@ -158,5 +187,7 @@ CREATE TABLE streams (
         REFERENCES tracks(track_id),
 
     FOREIGN KEY (playlist_id)
-        REFERENCES playlists(playlist_id)
+        REFERENCES playlists(playlist_id),
+
+    CHECK (ms_played IS NULL OR ms_played >= 0)
 );
