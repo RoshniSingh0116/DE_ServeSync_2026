@@ -1,0 +1,110 @@
+erDiagram
+    users ||--o{ playlists : "owns"
+    users ||--o{ streams : "plays"
+    users ||--o{ liked_tracks : "likes"
+    users ||--o{ artist_follows : "follows"
+    users |o--o{ playlist_tracks : "added by"
+
+    artists ||--o{ albums : "releases"
+    artists ||--o{ track_artists : "credits (PRIMARY / FEATURED)"
+    artists ||--o{ artist_follows : "followed by"
+
+    albums ||--o{ tracks : "has tracks"
+
+    tracks ||--o{ track_artists : "credited as"
+    tracks ||--o{ streams : "played in"
+    tracks ||--o{ liked_tracks : "liked by"
+    tracks ||--o{ playlist_tracks : "appears in"
+
+    playlists ||--o{ playlist_tracks : "holds"
+    playlists |o..o{ streams : "played from"
+
+    users {
+        INT user_id PK "NOT NULL"
+        VARCHAR(255) email UK "NOT NULL"
+        VARCHAR(100) display_name
+        CHAR(2) country_code
+        DATE birth_date
+        VARCHAR(30) subscription
+        TIMESTAMPTZ created_at
+    }
+
+    artists {
+        INT artist_id PK "NOT NULL"
+        VARCHAR(150) artist_name "NOT NULL"
+        CHAR(2) country_code
+        VARCHAR(100) primary_genre
+        BOOLEAN is_verified
+        INT monthly_listeners
+        TIMESTAMPTZ created_at
+    }
+
+    albums {
+        INT album_id PK "NOT NULL"
+        INT artist_id FK "NOT NULL"
+        VARCHAR(255) album_title "NOT NULL"
+        VARCHAR(30) album_type
+        DATE release_date
+        VARCHAR(150) label
+        BIGINT upc
+    }
+
+    tracks {
+        INT track_id PK "NOT NULL"
+        INT album_id FK "NOT NULL"
+        INT disc_no
+        INT track_no
+        VARCHAR(255) title "NOT NULL"
+        INT duration_ms
+        BOOLEAN explicit
+        VARCHAR(20) isrc
+        INT popularity
+    }
+
+    track_artists {
+        INT track_id PK, FK "NOT NULL"
+        INT artist_id PK, FK "NOT NULL"
+        VARCHAR(50) role
+    }
+
+    playlists {
+        INT playlist_id PK "NOT NULL"
+        INT owner_user_id FK "NOT NULL"
+        VARCHAR(255) name "NOT NULL"
+        BOOLEAN is_public
+        BOOLEAN is_collaborative
+        TIMESTAMPTZ created_at
+    }
+
+    playlist_tracks {
+        INT playlist_id PK, FK "NOT NULL"
+        INT position PK "NOT NULL"
+        INT track_id FK "NOT NULL"
+        INT added_by_user_id FK "nullable"
+        TIMESTAMPTZ added_at
+    }
+
+    artist_follows {
+        INT user_id PK, FK "NOT NULL"
+        INT artist_id PK, FK "NOT NULL"
+        TIMESTAMPTZ followed_at
+    }
+
+    liked_tracks {
+        INT user_id PK, FK "NOT NULL"
+        INT track_id PK, FK "NOT NULL"
+        TIMESTAMPTZ liked_at
+    }
+
+    streams {
+        INT stream_id PK "NOT NULL"
+        INT user_id FK "NOT NULL"
+        INT track_id FK "NOT NULL"
+        TIMESTAMPTZ started_at
+        INT ms_played
+        VARCHAR(50) platform
+        VARCHAR(50) source_type
+        INT playlist_id FK "nullable"
+        BOOLEAN skipped
+        BOOLEAN offline
+    }
