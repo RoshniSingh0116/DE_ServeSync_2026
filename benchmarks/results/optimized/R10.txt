@@ -1,0 +1,105 @@
+=== R10 run 1 ===
+GroupAggregate  (cost=6554.02..6721.48 rows=1250 width=18) (actual time=9.016..10.527 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=2622
+  ->  Gather Merge  (cost=6554.02..6696.48 rows=1250 width=10) (actual time=8.999..10.136 rows=13736.00 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=2622
+        ->  Sort  (cost=5554.01..5555.84 rows=735 width=10) (actual time=7.965..8.084 rows=6868.00 loops=2)
+              Sort Key: ((started_at)::date), platform
+              Sort Method: quicksort  Memory: 390kB
+              Buffers: shared hit=2622
+              Worker 0:  Sort Method: quicksort  Memory: 384kB
+              ->  Parallel Seq Scan on streams  (cost=0.00..5519.01 rows=735 width=10) (actual time=6.412..7.309 rows=6868.00 loops=2)
+                    Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    Rows Removed by Filter: 118132
+                    Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=154
+Planning Time: 0.262 ms
+Execution Time: 10.570 ms
+=== R10 run 2 ===
+GroupAggregate  (cost=6554.02..6721.48 rows=1250 width=18) (actual time=8.739..10.259 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=2622
+  ->  Gather Merge  (cost=6554.02..6696.48 rows=1250 width=10) (actual time=8.721..9.860 rows=13736.00 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=2622
+        ->  Sort  (cost=5554.01..5555.84 rows=735 width=10) (actual time=7.866..7.986 rows=6868.00 loops=2)
+              Sort Key: ((started_at)::date), platform
+              Sort Method: quicksort  Memory: 386kB
+              Buffers: shared hit=2622
+              Worker 0:  Sort Method: quicksort  Memory: 388kB
+              ->  Parallel Seq Scan on streams  (cost=0.00..5519.01 rows=735 width=10) (actual time=6.387..7.221 rows=6868.00 loops=2)
+                    Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    Rows Removed by Filter: 118132
+                    Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=154
+Planning Time: 0.238 ms
+Execution Time: 10.295 ms
+=== R10 run 3 ===
+GroupAggregate  (cost=6554.02..6721.48 rows=1250 width=18) (actual time=8.854..10.386 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=2622
+  ->  Gather Merge  (cost=6554.02..6696.48 rows=1250 width=10) (actual time=8.835..9.961 rows=13736.00 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=2622
+        ->  Sort  (cost=5554.01..5555.84 rows=735 width=10) (actual time=7.929..8.054 rows=6868.00 loops=2)
+              Sort Key: ((started_at)::date), platform
+              Sort Method: quicksort  Memory: 384kB
+              Buffers: shared hit=2622
+              Worker 0:  Sort Method: quicksort  Memory: 390kB
+              ->  Parallel Seq Scan on streams  (cost=0.00..5519.01 rows=735 width=10) (actual time=6.406..7.257 rows=6868.00 loops=2)
+                    Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    Rows Removed by Filter: 118132
+                    Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=154
+Planning Time: 0.224 ms
+Execution Time: 10.423 ms
+=== R10 run 4 ===
+GroupAggregate  (cost=6554.02..6721.48 rows=1250 width=18) (actual time=8.691..10.208 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=2622
+  ->  Gather Merge  (cost=6554.02..6696.48 rows=1250 width=10) (actual time=8.673..9.799 rows=13736.00 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=2622
+        ->  Sort  (cost=5554.01..5555.84 rows=735 width=10) (actual time=7.772..7.897 rows=6868.00 loops=2)
+              Sort Key: ((started_at)::date), platform
+              Sort Method: quicksort  Memory: 388kB
+              Buffers: shared hit=2622
+              Worker 0:  Sort Method: quicksort  Memory: 386kB
+              ->  Parallel Seq Scan on streams  (cost=0.00..5519.01 rows=735 width=10) (actual time=6.277..7.128 rows=6868.00 loops=2)
+                    Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    Rows Removed by Filter: 118132
+                    Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=154
+Planning Time: 0.225 ms
+Execution Time: 10.243 ms
+=== R10 run 5 ===
+GroupAggregate  (cost=6554.02..6721.48 rows=1250 width=18) (actual time=8.732..10.326 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=2622
+  ->  Gather Merge  (cost=6554.02..6696.48 rows=1250 width=10) (actual time=8.715..9.910 rows=13736.00 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=2622
+        ->  Sort  (cost=5554.01..5555.84 rows=735 width=10) (actual time=7.788..7.913 rows=6868.00 loops=2)
+              Sort Key: ((started_at)::date), platform
+              Sort Method: quicksort  Memory: 389kB
+              Buffers: shared hit=2622
+              Worker 0:  Sort Method: quicksort  Memory: 385kB
+              ->  Parallel Seq Scan on streams  (cost=0.00..5519.01 rows=735 width=10) (actual time=6.310..7.146 rows=6868.00 loops=2)
+                    Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    Rows Removed by Filter: 118132
+                    Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=154
+Planning Time: 0.227 ms
+Execution Time: 10.363 ms

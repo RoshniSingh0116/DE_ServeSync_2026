@@ -1,0 +1,115 @@
+=== R24 run 1 ===
+Sort  (cost=2661.38..2661.39 rows=4 width=78) (actual time=11.997..11.998 rows=4.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=860
+  ->  HashAggregate  (cost=2661.22..2661.34 rows=4 width=78) (actual time=11.986..11.988 rows=4.00 loops=1)
+        Group Key: a.album_type
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=857
+        ->  Hash Join  (cost=395.00..1983.14 rows=67808 width=11) (actual time=1.046..7.969 rows=67808.00 loops=1)
+              Hash Cond: (t.album_id = a.album_id)
+              Buffers: shared hit=857
+              ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=9) (actual time=0.002..1.725 rows=67808.00 loops=1)
+                    Buffers: shared hit=732
+              ->  Hash  (cost=245.00..245.00 rows=12000 width=10) (actual time=1.032..1.032 rows=12000.00 loops=1)
+                    Buckets: 16384  Batches: 1  Memory Usage: 637kB
+                    Buffers: shared hit=125
+                    ->  Seq Scan on albums a  (cost=0.00..245.00 rows=12000 width=10) (actual time=0.003..0.485 rows=12000.00 loops=1)
+                          Buffers: shared hit=125
+Planning:
+  Buffers: shared hit=229
+Planning Time: 0.320 ms
+Execution Time: 12.038 ms
+=== R24 run 2 ===
+Sort  (cost=2661.38..2661.39 rows=4 width=78) (actual time=11.993..11.994 rows=4.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=860
+  ->  HashAggregate  (cost=2661.22..2661.34 rows=4 width=78) (actual time=11.984..11.986 rows=4.00 loops=1)
+        Group Key: a.album_type
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=857
+        ->  Hash Join  (cost=395.00..1983.14 rows=67808 width=11) (actual time=1.044..7.856 rows=67808.00 loops=1)
+              Hash Cond: (t.album_id = a.album_id)
+              Buffers: shared hit=857
+              ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=9) (actual time=0.002..1.639 rows=67808.00 loops=1)
+                    Buffers: shared hit=732
+              ->  Hash  (cost=245.00..245.00 rows=12000 width=10) (actual time=1.032..1.032 rows=12000.00 loops=1)
+                    Buckets: 16384  Batches: 1  Memory Usage: 637kB
+                    Buffers: shared hit=125
+                    ->  Seq Scan on albums a  (cost=0.00..245.00 rows=12000 width=10) (actual time=0.003..0.455 rows=12000.00 loops=1)
+                          Buffers: shared hit=125
+Planning:
+  Buffers: shared hit=229
+Planning Time: 0.302 ms
+Execution Time: 12.027 ms
+=== R24 run 3 ===
+Sort  (cost=2661.38..2661.39 rows=4 width=78) (actual time=11.598..11.599 rows=4.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=860
+  ->  HashAggregate  (cost=2661.22..2661.34 rows=4 width=78) (actual time=11.588..11.590 rows=4.00 loops=1)
+        Group Key: a.album_type
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=857
+        ->  Hash Join  (cost=395.00..1983.14 rows=67808 width=11) (actual time=0.979..7.624 rows=67808.00 loops=1)
+              Hash Cond: (t.album_id = a.album_id)
+              Buffers: shared hit=857
+              ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=9) (actual time=0.002..1.667 rows=67808.00 loops=1)
+                    Buffers: shared hit=732
+              ->  Hash  (cost=245.00..245.00 rows=12000 width=10) (actual time=0.966..0.966 rows=12000.00 loops=1)
+                    Buckets: 16384  Batches: 1  Memory Usage: 637kB
+                    Buffers: shared hit=125
+                    ->  Seq Scan on albums a  (cost=0.00..245.00 rows=12000 width=10) (actual time=0.008..0.460 rows=12000.00 loops=1)
+                          Buffers: shared hit=125
+Planning:
+  Buffers: shared hit=229
+Planning Time: 0.314 ms
+Execution Time: 11.637 ms
+=== R24 run 4 ===
+Sort  (cost=2661.38..2661.39 rows=4 width=78) (actual time=11.735..11.736 rows=4.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=860
+  ->  HashAggregate  (cost=2661.22..2661.34 rows=4 width=78) (actual time=11.726..11.727 rows=4.00 loops=1)
+        Group Key: a.album_type
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=857
+        ->  Hash Join  (cost=395.00..1983.14 rows=67808 width=11) (actual time=1.048..7.762 rows=67808.00 loops=1)
+              Hash Cond: (t.album_id = a.album_id)
+              Buffers: shared hit=857
+              ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=9) (actual time=0.002..1.628 rows=67808.00 loops=1)
+                    Buffers: shared hit=732
+              ->  Hash  (cost=245.00..245.00 rows=12000 width=10) (actual time=1.036..1.037 rows=12000.00 loops=1)
+                    Buckets: 16384  Batches: 1  Memory Usage: 637kB
+                    Buffers: shared hit=125
+                    ->  Seq Scan on albums a  (cost=0.00..245.00 rows=12000 width=10) (actual time=0.002..0.467 rows=12000.00 loops=1)
+                          Buffers: shared hit=125
+Planning:
+  Buffers: shared hit=229
+Planning Time: 0.300 ms
+Execution Time: 11.769 ms
+=== R24 run 5 ===
+Sort  (cost=2661.38..2661.39 rows=4 width=78) (actual time=11.605..11.605 rows=4.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=860
+  ->  HashAggregate  (cost=2661.22..2661.34 rows=4 width=78) (actual time=11.597..11.598 rows=4.00 loops=1)
+        Group Key: a.album_type
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=857
+        ->  Hash Join  (cost=395.00..1983.14 rows=67808 width=11) (actual time=0.980..7.647 rows=67808.00 loops=1)
+              Hash Cond: (t.album_id = a.album_id)
+              Buffers: shared hit=857
+              ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=9) (actual time=0.002..1.641 rows=67808.00 loops=1)
+                    Buffers: shared hit=732
+              ->  Hash  (cost=245.00..245.00 rows=12000 width=10) (actual time=0.967..0.967 rows=12000.00 loops=1)
+                    Buckets: 16384  Batches: 1  Memory Usage: 637kB
+                    Buffers: shared hit=125
+                    ->  Seq Scan on albums a  (cost=0.00..245.00 rows=12000 width=10) (actual time=0.005..0.442 rows=12000.00 loops=1)
+                          Buffers: shared hit=125
+Planning:
+  Buffers: shared hit=229
+Planning Time: 0.289 ms
+Execution Time: 11.639 ms

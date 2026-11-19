@@ -1,0 +1,75 @@
+=== R21 run 1 ===
+Nested Loop  (cost=0.29..1587.90 rows=1 width=44) (actual time=0.075..3.069 rows=1.00 loops=1)
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks t  (cost=0.00..1579.60 rows=1 width=23) (actual time=0.071..3.064 rows=1.00 loops=1)
+        Filter: ((isrc)::text = 'INASA1301389'::text)
+        Rows Removed by Filter: 67807
+        Buffers: shared hit=732
+  ->  Index Scan using albums_pkey on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=208
+Planning Time: 0.364 ms
+Execution Time: 3.089 ms
+=== R21 run 2 ===
+Nested Loop  (cost=0.29..1587.90 rows=1 width=44) (actual time=0.070..2.808 rows=1.00 loops=1)
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks t  (cost=0.00..1579.60 rows=1 width=23) (actual time=0.065..2.803 rows=1.00 loops=1)
+        Filter: ((isrc)::text = 'INASA1301389'::text)
+        Rows Removed by Filter: 67807
+        Buffers: shared hit=732
+  ->  Index Scan using albums_pkey on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=208
+Planning Time: 0.334 ms
+Execution Time: 2.828 ms
+=== R21 run 3 ===
+Nested Loop  (cost=0.29..1587.90 rows=1 width=44) (actual time=0.066..2.747 rows=1.00 loops=1)
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks t  (cost=0.00..1579.60 rows=1 width=23) (actual time=0.062..2.743 rows=1.00 loops=1)
+        Filter: ((isrc)::text = 'INASA1301389'::text)
+        Rows Removed by Filter: 67807
+        Buffers: shared hit=732
+  ->  Index Scan using albums_pkey on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=208
+Planning Time: 0.316 ms
+Execution Time: 2.765 ms
+=== R21 run 4 ===
+Nested Loop  (cost=0.29..1587.90 rows=1 width=44) (actual time=0.057..2.318 rows=1.00 loops=1)
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks t  (cost=0.00..1579.60 rows=1 width=23) (actual time=0.053..2.314 rows=1.00 loops=1)
+        Filter: ((isrc)::text = 'INASA1301389'::text)
+        Rows Removed by Filter: 67807
+        Buffers: shared hit=732
+  ->  Index Scan using albums_pkey on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=208
+Planning Time: 0.273 ms
+Execution Time: 2.333 ms
+=== R21 run 5 ===
+Nested Loop  (cost=0.29..1587.90 rows=1 width=44) (actual time=0.059..2.424 rows=1.00 loops=1)
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks t  (cost=0.00..1579.60 rows=1 width=23) (actual time=0.055..2.421 rows=1.00 loops=1)
+        Filter: ((isrc)::text = 'INASA1301389'::text)
+        Rows Removed by Filter: 67807
+        Buffers: shared hit=732
+  ->  Index Scan using albums_pkey on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=208
+Planning Time: 0.272 ms
+Execution Time: 2.440 ms

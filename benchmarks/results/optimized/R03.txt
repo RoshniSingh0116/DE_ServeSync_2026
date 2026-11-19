@@ -1,0 +1,75 @@
+=== R03 run 1 ===
+Limit  (cost=1823.13..1823.18 rows=20 width=23) (actual time=22.299..22.301 rows=20.00 loops=1)
+  Buffers: shared hit=735
+  ->  Sort  (cost=1823.13..1846.01 rows=9152 width=23) (actual time=22.299..22.300 rows=20.00 loops=1)
+        Sort Key: popularity DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=735
+        ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=9152 width=23) (actual time=0.005..21.869 rows=9128.00 loops=1)
+              Filter: ((title)::text ~~* '%love%'::text)
+              Rows Removed by Filter: 58680
+              Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=70
+Planning Time: 1.177 ms
+Execution Time: 22.315 ms
+=== R03 run 2 ===
+Limit  (cost=1823.13..1823.18 rows=20 width=23) (actual time=22.087..22.088 rows=20.00 loops=1)
+  Buffers: shared hit=735
+  ->  Sort  (cost=1823.13..1846.01 rows=9152 width=23) (actual time=22.086..22.087 rows=20.00 loops=1)
+        Sort Key: popularity DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=735
+        ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=9152 width=23) (actual time=0.004..21.600 rows=9128.00 loops=1)
+              Filter: ((title)::text ~~* '%love%'::text)
+              Rows Removed by Filter: 58680
+              Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.200 ms
+Execution Time: 22.099 ms
+=== R03 run 3 ===
+Limit  (cost=1823.13..1823.18 rows=20 width=23) (actual time=21.516..21.517 rows=20.00 loops=1)
+  Buffers: shared hit=735
+  ->  Sort  (cost=1823.13..1846.01 rows=9152 width=23) (actual time=21.516..21.516 rows=20.00 loops=1)
+        Sort Key: popularity DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=735
+        ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=9152 width=23) (actual time=0.005..21.102 rows=9128.00 loops=1)
+              Filter: ((title)::text ~~* '%love%'::text)
+              Rows Removed by Filter: 58680
+              Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.186 ms
+Execution Time: 21.527 ms
+=== R03 run 4 ===
+Limit  (cost=1823.13..1823.18 rows=20 width=23) (actual time=21.810..21.811 rows=20.00 loops=1)
+  Buffers: shared hit=735
+  ->  Sort  (cost=1823.13..1846.01 rows=9152 width=23) (actual time=21.809..21.810 rows=20.00 loops=1)
+        Sort Key: popularity DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=735
+        ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=9152 width=23) (actual time=0.005..21.355 rows=9128.00 loops=1)
+              Filter: ((title)::text ~~* '%love%'::text)
+              Rows Removed by Filter: 58680
+              Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.212 ms
+Execution Time: 21.825 ms
+=== R03 run 5 ===
+Limit  (cost=1823.13..1823.18 rows=20 width=23) (actual time=21.983..21.985 rows=20.00 loops=1)
+  Buffers: shared hit=735
+  ->  Sort  (cost=1823.13..1846.01 rows=9152 width=23) (actual time=21.983..21.983 rows=20.00 loops=1)
+        Sort Key: popularity DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=735
+        ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=9152 width=23) (actual time=0.004..21.563 rows=9128.00 loops=1)
+              Filter: ((title)::text ~~* '%love%'::text)
+              Rows Removed by Filter: 58680
+              Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.182 ms
+Execution Time: 21.995 ms

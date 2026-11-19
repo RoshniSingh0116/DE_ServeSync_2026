@@ -1,0 +1,65 @@
+=== R02 run 1 ===
+Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=1.814..1.815 rows=14.00 loops=1)
+  Sort Key: disc_no, track_no
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.208..1.806 rows=14.00 loops=1)
+        Filter: (album_id = 1469)
+        Rows Removed by Filter: 67794
+        Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=79
+Planning Time: 0.159 ms
+Execution Time: 1.833 ms
+=== R02 run 2 ===
+Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=1.750..1.751 rows=14.00 loops=1)
+  Sort Key: disc_no, track_no
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.213..1.742 rows=14.00 loops=1)
+        Filter: (album_id = 1469)
+        Rows Removed by Filter: 67794
+        Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=79
+Planning Time: 0.151 ms
+Execution Time: 1.768 ms
+=== R02 run 3 ===
+Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=1.692..1.692 rows=14.00 loops=1)
+  Sort Key: disc_no, track_no
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.212..1.683 rows=14.00 loops=1)
+        Filter: (album_id = 1469)
+        Rows Removed by Filter: 67794
+        Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=79
+Planning Time: 0.155 ms
+Execution Time: 1.710 ms
+=== R02 run 4 ===
+Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=1.798..1.799 rows=14.00 loops=1)
+  Sort Key: disc_no, track_no
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.214..1.791 rows=14.00 loops=1)
+        Filter: (album_id = 1469)
+        Rows Removed by Filter: 67794
+        Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=79
+Planning Time: 0.158 ms
+Execution Time: 1.816 ms
+=== R02 run 5 ===
+Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=1.900..1.900 rows=14.00 loops=1)
+  Sort Key: disc_no, track_no
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=735
+  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.214..1.892 rows=14.00 loops=1)
+        Filter: (album_id = 1469)
+        Rows Removed by Filter: 67794
+        Buffers: shared hit=732
+Planning:
+  Buffers: shared hit=79
+Planning Time: 0.149 ms
+Execution Time: 1.917 ms
