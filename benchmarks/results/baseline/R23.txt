@@ -1,39 +1,39 @@
 === R23 run 1 ===
-Limit  (cost=33117.96..33118.02 rows=25 width=24) (actual time=44.075..44.077 rows=25.00 loops=1)
+Limit  (cost=33117.96..33118.02 rows=25 width=24) (actual time=43.639..43.643 rows=25.00 loops=1)
   Buffers: shared hit=2579, temp read=1045 written=1172
-  ->  Sort  (cost=32617.96..33242.96 rows=250000 width=24) (actual time=35.383..40.699 rows=200025.00 loops=1)
+  ->  Sort  (cost=32617.96..33242.96 rows=250000 width=24) (actual time=34.790..40.154 rows=200025.00 loops=1)
         Sort Key: started_at DESC
         Sort Method: external merge  Disk: 9336kB
         Buffers: shared hit=2579, temp read=1045 written=1172
-        ->  Seq Scan on streams  (cost=0.00..5076.00 rows=250000 width=24) (actual time=0.005..12.357 rows=250000.00 loops=1)
+        ->  Seq Scan on streams  (cost=0.00..5076.00 rows=250000 width=24) (actual time=0.004..12.266 rows=250000.00 loops=1)
               Buffers: shared hit=2576
 Planning:
   Buffers: shared hit=88
-Planning Time: 0.154 ms
-Execution Time: 44.376 ms
+Planning Time: 0.166 ms
+Execution Time: 43.946 ms
 === R23 run 2 ===
-Limit  (cost=33117.96..33118.02 rows=25 width=24) (actual time=44.714..44.716 rows=25.00 loops=1)
+Limit  (cost=33117.96..33118.02 rows=25 width=24) (actual time=44.541..44.542 rows=25.00 loops=1)
   Buffers: shared hit=2579, temp read=1045 written=1172
-  ->  Sort  (cost=32617.96..33242.96 rows=250000 width=24) (actual time=35.833..41.255 rows=200025.00 loops=1)
+  ->  Sort  (cost=32617.96..33242.96 rows=250000 width=24) (actual time=35.897..41.163 rows=200025.00 loops=1)
         Sort Key: started_at DESC
         Sort Method: external merge  Disk: 9336kB
         Buffers: shared hit=2579, temp read=1045 written=1172
-        ->  Seq Scan on streams  (cost=0.00..5076.00 rows=250000 width=24) (actual time=0.004..12.262 rows=250000.00 loops=1)
+        ->  Seq Scan on streams  (cost=0.00..5076.00 rows=250000 width=24) (actual time=0.003..12.531 rows=250000.00 loops=1)
               Buffers: shared hit=2576
 Planning:
   Buffers: shared hit=88
-Planning Time: 0.145 ms
-Execution Time: 45.076 ms
+Planning Time: 0.136 ms
+Execution Time: 44.857 ms
 === R23 run 3 ===
-Limit  (cost=33117.96..33118.02 rows=25 width=24) (actual time=44.540..44.541 rows=25.00 loops=1)
+Limit  (cost=33117.96..33118.02 rows=25 width=24) (actual time=44.331..44.333 rows=25.00 loops=1)
   Buffers: shared hit=2579, temp read=1045 written=1172
-  ->  Sort  (cost=32617.96..33242.96 rows=250000 width=24) (actual time=35.845..41.127 rows=200025.00 loops=1)
+  ->  Sort  (cost=32617.96..33242.96 rows=250000 width=24) (actual time=35.730..40.960 rows=200025.00 loops=1)
         Sort Key: started_at DESC
         Sort Method: external merge  Disk: 9336kB
         Buffers: shared hit=2579, temp read=1045 written=1172
-        ->  Seq Scan on streams  (cost=0.00..5076.00 rows=250000 width=24) (actual time=0.004..12.394 rows=250000.00 loops=1)
+        ->  Seq Scan on streams  (cost=0.00..5076.00 rows=250000 width=24) (actual time=0.003..12.460 rows=250000.00 loops=1)
               Buffers: shared hit=2576
 Planning:
   Buffers: shared hit=88
-Planning Time: 0.129 ms
-Execution Time: 44.821 ms
+Planning Time: 0.134 ms
+Execution Time: 44.624 ms

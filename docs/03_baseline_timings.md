@@ -46,7 +46,7 @@ The scan types and reasons below are based on the observed execution plans.
 | W02: Heart button: user 1038 likes track 1389 | WRITE | 0.480 | 0.524 | 0.520 | 0.508 | INSERT with primary-key conflict check; no full table scan | Inserts one liked-track record. The primary-key index checks for duplicates, and foreign-key constraints validate the user and track. |
 | W03: Add to playlist: append track 1389 to the end of playlist 501 | WRITE | 0.521 | 0.467 | 0.475 | 0.488 | Index Scan (`playlists_pkey`); Index Only Scan Backward (`playlist_tracks_pkey`) | Uses indexes to find the playlist and its last track position, then inserts one playlist-track record. |
 | W04: Nightly job: recompute every artist's monthly listeners (last 28 days) | WRITE | 43.970 | 40.134 | 40.162 | 41.422 | Seq Scan (`streams`, `track_artists`, `artists`); Hash Join / Merge Join; GroupAggregate | Reads large tables, joins listening activity with artist information, groups the results to calculate monthly listeners, and updates 3,000 artist records. |
-| W05: Takedown: remove tracks from the album containing track 1389 from every playlist | WRITE |  |  |  |  |   |   |
+| W05: Takedown: remove tracks from the album containing track 1389 from every playlist | WRITE | 8.563 | 8.081 | 8.355 | 8.333 |Index Scan (`tracks_pkey`); Seq Scan (`tracks`, `playlist_tracks`); Hash Join   | Uses the primary-key index to find the target track, then scans the tracks and playlist_tracks tables to identify matching playlist entries. Deletes the matching records.  |
 | **Total (sum of 29 queries, excluding W05)** | | **9256.841** | **9235.206** | **9229.044** | **9240.364** | | |
 
 

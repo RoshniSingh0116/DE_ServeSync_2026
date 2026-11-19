@@ -1,105 +1,105 @@
 === R25 run 1 ===
-Limit  (cost=7996.68..7996.80 rows=50 width=31) (actual time=17.457..17.461 rows=50.00 loops=1)
+Limit  (cost=7996.68..7996.80 rows=50 width=31) (actual time=17.327..17.330 rows=50.00 loops=1)
   Buffers: shared hit=3439
-  ->  Sort  (cost=7996.68..8001.31 rows=1855 width=31) (actual time=17.457..17.458 rows=50.00 loops=1)
+  ->  Sort  (cost=7996.68..8001.31 rows=1855 width=31) (actual time=17.326..17.328 rows=50.00 loops=1)
         Sort Key: (count(s.stream_id)) DESC, a.release_date DESC
         Sort Method: top-N heapsort  Memory: 31kB
         Buffers: shared hit=3439
-        ->  HashAggregate  (cost=7916.51..7935.06 rows=1855 width=31) (actual time=17.374..17.405 rows=460.00 loops=1)
+        ->  HashAggregate  (cost=7916.51..7935.06 rows=1855 width=31) (actual time=17.250..17.278 rows=460.00 loops=1)
               Group Key: t.track_id, a.release_date
               Batches: 1  Memory Usage: 121kB
               Buffers: shared hit=3433
-              ->  Hash Right Join  (cost=1870.54..7902.59 rows=1855 width=27) (actual time=16.438..17.272 rows=912.00 loops=1)
+              ->  Hash Right Join  (cost=1870.54..7902.59 rows=1855 width=27) (actual time=16.357..17.161 rows=912.00 loops=1)
                     Hash Cond: (s.track_id = t.track_id)
                     Buffers: shared hit=3433
-                    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=8) (actual time=0.005..5.997 rows=250000.00 loops=1)
+                    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=8) (actual time=0.002..5.937 rows=250000.00 loops=1)
                           Buffers: shared hit=2576
-                    ->  Hash  (cost=1864.26..1864.26 rows=503 width=23) (actual time=3.829..3.829 rows=460.00 loops=1)
+                    ->  Hash  (cost=1864.26..1864.26 rows=503 width=23) (actual time=3.811..3.811 rows=460.00 loops=1)
                           Buckets: 1024  Batches: 1  Memory Usage: 33kB
                           Buffers: shared hit=857
-                          ->  Hash Join  (cost=276.11..1864.26 rows=503 width=23) (actual time=0.426..3.804 rows=460.00 loops=1)
+                          ->  Hash Join  (cost=276.11..1864.26 rows=503 width=23) (actual time=0.434..3.786 rows=460.00 loops=1)
                                 Hash Cond: (t.album_id = a.album_id)
                                 Buffers: shared hit=857
-                                ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=23) (actual time=0.004..1.694 rows=67808.00 loops=1)
+                                ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=23) (actual time=0.004..1.620 rows=67808.00 loops=1)
                                       Buffers: shared hit=732
-                                ->  Hash  (cost=275.00..275.00 rows=89 width=8) (actual time=0.372..0.372 rows=84.00 loops=1)
+                                ->  Hash  (cost=275.00..275.00 rows=89 width=8) (actual time=0.381..0.381 rows=84.00 loops=1)
                                       Buckets: 1024  Batches: 1  Memory Usage: 12kB
                                       Buffers: shared hit=125
-                                      ->  Seq Scan on albums a  (cost=0.00..275.00 rows=89 width=8) (actual time=0.016..0.366 rows=84.00 loops=1)
+                                      ->  Seq Scan on albums a  (cost=0.00..275.00 rows=89 width=8) (actual time=0.008..0.375 rows=84.00 loops=1)
                                             Filter: (release_date >= '2026-05-31'::date)
                                             Rows Removed by Filter: 11916
                                             Buffers: shared hit=125
 Planning:
   Buffers: shared hit=194
-Planning Time: 0.393 ms
-Execution Time: 17.502 ms
+Planning Time: 0.404 ms
+Execution Time: 17.371 ms
 === R25 run 2 ===
-Limit  (cost=7996.68..7996.80 rows=50 width=31) (actual time=17.374..17.377 rows=50.00 loops=1)
+Limit  (cost=7996.68..7996.80 rows=50 width=31) (actual time=16.779..16.782 rows=50.00 loops=1)
   Buffers: shared hit=3439
-  ->  Sort  (cost=7996.68..8001.31 rows=1855 width=31) (actual time=17.373..17.375 rows=50.00 loops=1)
+  ->  Sort  (cost=7996.68..8001.31 rows=1855 width=31) (actual time=16.778..16.779 rows=50.00 loops=1)
         Sort Key: (count(s.stream_id)) DESC, a.release_date DESC
         Sort Method: top-N heapsort  Memory: 31kB
         Buffers: shared hit=3439
-        ->  HashAggregate  (cost=7916.51..7935.06 rows=1855 width=31) (actual time=17.290..17.322 rows=460.00 loops=1)
+        ->  HashAggregate  (cost=7916.51..7935.06 rows=1855 width=31) (actual time=16.703..16.731 rows=460.00 loops=1)
               Group Key: t.track_id, a.release_date
               Batches: 1  Memory Usage: 121kB
               Buffers: shared hit=3433
-              ->  Hash Right Join  (cost=1870.54..7902.59 rows=1855 width=27) (actual time=16.362..17.198 rows=912.00 loops=1)
+              ->  Hash Right Join  (cost=1870.54..7902.59 rows=1855 width=27) (actual time=15.800..16.616 rows=912.00 loops=1)
                     Hash Cond: (s.track_id = t.track_id)
                     Buffers: shared hit=3433
-                    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=8) (actual time=0.003..5.946 rows=250000.00 loops=1)
+                    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=8) (actual time=0.002..5.717 rows=250000.00 loops=1)
                           Buffers: shared hit=2576
-                    ->  Hash  (cost=1864.26..1864.26 rows=503 width=23) (actual time=3.599..3.600 rows=460.00 loops=1)
+                    ->  Hash  (cost=1864.26..1864.26 rows=503 width=23) (actual time=3.642..3.642 rows=460.00 loops=1)
                           Buckets: 1024  Batches: 1  Memory Usage: 33kB
                           Buffers: shared hit=857
-                          ->  Hash Join  (cost=276.11..1864.26 rows=503 width=23) (actual time=0.392..3.574 rows=460.00 loops=1)
+                          ->  Hash Join  (cost=276.11..1864.26 rows=503 width=23) (actual time=0.396..3.617 rows=460.00 loops=1)
                                 Hash Cond: (t.album_id = a.album_id)
                                 Buffers: shared hit=857
-                                ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=23) (actual time=0.004..1.528 rows=67808.00 loops=1)
+                                ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=23) (actual time=0.004..1.561 rows=67808.00 loops=1)
                                       Buffers: shared hit=732
-                                ->  Hash  (cost=275.00..275.00 rows=89 width=8) (actual time=0.341..0.341 rows=84.00 loops=1)
+                                ->  Hash  (cost=275.00..275.00 rows=89 width=8) (actual time=0.347..0.347 rows=84.00 loops=1)
                                       Buckets: 1024  Batches: 1  Memory Usage: 12kB
                                       Buffers: shared hit=125
-                                      ->  Seq Scan on albums a  (cost=0.00..275.00 rows=89 width=8) (actual time=0.008..0.335 rows=84.00 loops=1)
+                                      ->  Seq Scan on albums a  (cost=0.00..275.00 rows=89 width=8) (actual time=0.007..0.342 rows=84.00 loops=1)
                                             Filter: (release_date >= '2026-05-31'::date)
                                             Rows Removed by Filter: 11916
                                             Buffers: shared hit=125
 Planning:
   Buffers: shared hit=194
-Planning Time: 0.377 ms
-Execution Time: 17.417 ms
+Planning Time: 0.357 ms
+Execution Time: 16.818 ms
 === R25 run 3 ===
-Limit  (cost=7996.68..7996.80 rows=50 width=31) (actual time=17.434..17.438 rows=50.00 loops=1)
+Limit  (cost=7996.68..7996.80 rows=50 width=31) (actual time=17.159..17.162 rows=50.00 loops=1)
   Buffers: shared hit=3439
-  ->  Sort  (cost=7996.68..8001.31 rows=1855 width=31) (actual time=17.434..17.435 rows=50.00 loops=1)
+  ->  Sort  (cost=7996.68..8001.31 rows=1855 width=31) (actual time=17.158..17.160 rows=50.00 loops=1)
         Sort Key: (count(s.stream_id)) DESC, a.release_date DESC
         Sort Method: top-N heapsort  Memory: 31kB
         Buffers: shared hit=3439
-        ->  HashAggregate  (cost=7916.51..7935.06 rows=1855 width=31) (actual time=17.349..17.382 rows=460.00 loops=1)
+        ->  HashAggregate  (cost=7916.51..7935.06 rows=1855 width=31) (actual time=17.076..17.108 rows=460.00 loops=1)
               Group Key: t.track_id, a.release_date
               Batches: 1  Memory Usage: 121kB
               Buffers: shared hit=3433
-              ->  Hash Right Join  (cost=1870.54..7902.59 rows=1855 width=27) (actual time=16.432..17.258 rows=912.00 loops=1)
+              ->  Hash Right Join  (cost=1870.54..7902.59 rows=1855 width=27) (actual time=16.156..16.984 rows=912.00 loops=1)
                     Hash Cond: (s.track_id = t.track_id)
                     Buffers: shared hit=3433
-                    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=8) (actual time=0.003..6.045 rows=250000.00 loops=1)
+                    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=8) (actual time=0.002..5.950 rows=250000.00 loops=1)
                           Buffers: shared hit=2576
-                    ->  Hash  (cost=1864.26..1864.26 rows=503 width=23) (actual time=3.688..3.688 rows=460.00 loops=1)
+                    ->  Hash  (cost=1864.26..1864.26 rows=503 width=23) (actual time=3.576..3.577 rows=460.00 loops=1)
                           Buckets: 1024  Batches: 1  Memory Usage: 33kB
                           Buffers: shared hit=857
-                          ->  Hash Join  (cost=276.11..1864.26 rows=503 width=23) (actual time=0.396..3.663 rows=460.00 loops=1)
+                          ->  Hash Join  (cost=276.11..1864.26 rows=503 width=23) (actual time=0.394..3.552 rows=460.00 loops=1)
                                 Hash Cond: (t.album_id = a.album_id)
                                 Buffers: shared hit=857
-                                ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=23) (actual time=0.004..1.566 rows=67808.00 loops=1)
+                                ->  Seq Scan on tracks t  (cost=0.00..1410.08 rows=67808 width=23) (actual time=0.004..1.527 rows=67808.00 loops=1)
                                       Buffers: shared hit=732
                                 ->  Hash  (cost=275.00..275.00 rows=89 width=8) (actual time=0.345..0.345 rows=84.00 loops=1)
                                       Buckets: 1024  Batches: 1  Memory Usage: 12kB
                                       Buffers: shared hit=125
-                                      ->  Seq Scan on albums a  (cost=0.00..275.00 rows=89 width=8) (actual time=0.008..0.339 rows=84.00 loops=1)
+                                      ->  Seq Scan on albums a  (cost=0.00..275.00 rows=89 width=8) (actual time=0.007..0.340 rows=84.00 loops=1)
                                             Filter: (release_date >= '2026-05-31'::date)
                                             Rows Removed by Filter: 11916
                                             Buffers: shared hit=125
 Planning:
   Buffers: shared hit=194
-Planning Time: 0.361 ms
-Execution Time: 17.479 ms
+Planning Time: 0.355 ms
+Execution Time: 17.203 ms

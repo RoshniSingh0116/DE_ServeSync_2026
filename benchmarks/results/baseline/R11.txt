@@ -1,51 +1,51 @@
 === R11 run 1 ===
-Sort  (cost=282.24..282.24 rows=2 width=48) (actual time=0.528..0.529 rows=9.00 loops=1)
+Sort  (cost=282.24..282.24 rows=2 width=48) (actual time=2.395..2.396 rows=9.00 loops=1)
   Sort Key: a.release_date DESC
   Sort Method: quicksort  Memory: 25kB
-  Buffers: shared hit=158
-  ->  Nested Loop  (cost=4.66..282.23 rows=2 width=48) (actual time=0.148..0.518 rows=9.00 loops=1)
-        Buffers: shared hit=155
-        ->  Hash Join  (cost=4.38..281.01 rows=2 width=38) (actual time=0.141..0.506 rows=9.00 loops=1)
+  Buffers: shared hit=28 read=130
+  ->  Nested Loop  (cost=4.66..282.23 rows=2 width=48) (actual time=1.514..2.384 rows=9.00 loops=1)
+        Buffers: shared hit=25 read=130
+        ->  Hash Join  (cost=4.38..281.01 rows=2 width=38) (actual time=1.226..2.085 rows=9.00 loops=1)
               Hash Cond: (a.artist_id = f.artist_id)
-              Buffers: shared hit=128
-              ->  Seq Scan on albums a  (cost=0.00..275.00 rows=615 width=34) (actual time=0.009..0.447 rows=615.00 loops=1)
+              Buffers: shared read=128
+              ->  Seq Scan on albums a  (cost=0.00..275.00 rows=615 width=34) (actual time=0.197..1.641 rows=615.00 loops=1)
                     Filter: (release_date >= '2026-01-01'::date)
                     Rows Removed by Filter: 11385
-                    Buffers: shared hit=125
-              ->  Hash  (cost=4.35..4.35 rows=3 width=4) (actual time=0.035..0.035 rows=3.00 loops=1)
+                    Buffers: shared read=125
+              ->  Hash  (cost=4.35..4.35 rows=3 width=4) (actual time=0.415..0.415 rows=3.00 loops=1)
                     Buckets: 1024  Batches: 1  Memory Usage: 9kB
-                    Buffers: shared hit=3
-                    ->  Index Only Scan using artist_follows_pkey on artist_follows f  (cost=0.29..4.35 rows=3 width=4) (actual time=0.032..0.032 rows=3.00 loops=1)
+                    Buffers: shared read=3
+                    ->  Index Only Scan using artist_follows_pkey on artist_follows f  (cost=0.29..4.35 rows=3 width=4) (actual time=0.410..0.411 rows=3.00 loops=1)
                           Index Cond: (user_id = 1038)
                           Heap Fetches: 0
                           Index Searches: 1
-                          Buffers: shared hit=3
-        ->  Index Scan using artists_pkey on artists ar  (cost=0.28..0.61 rows=1 width=22) (actual time=0.001..0.001 rows=1.00 loops=9)
+                          Buffers: shared read=3
+        ->  Index Scan using artists_pkey on artists ar  (cost=0.28..0.61 rows=1 width=22) (actual time=0.033..0.033 rows=1.00 loops=9)
               Index Cond: (artist_id = a.artist_id)
               Index Searches: 9
-              Buffers: shared hit=27
+              Buffers: shared hit=25 read=2
 Planning:
-  Buffers: shared hit=253
-Planning Time: 0.436 ms
-Execution Time: 0.562 ms
+  Buffers: shared hit=250 read=3
+Planning Time: 0.949 ms
+Execution Time: 2.424 ms
 === R11 run 2 ===
-Sort  (cost=282.24..282.24 rows=2 width=48) (actual time=0.464..0.465 rows=9.00 loops=1)
+Sort  (cost=282.24..282.24 rows=2 width=48) (actual time=0.451..0.452 rows=9.00 loops=1)
   Sort Key: a.release_date DESC
   Sort Method: quicksort  Memory: 25kB
   Buffers: shared hit=158
-  ->  Nested Loop  (cost=4.66..282.23 rows=2 width=48) (actual time=0.127..0.454 rows=9.00 loops=1)
+  ->  Nested Loop  (cost=4.66..282.23 rows=2 width=48) (actual time=0.115..0.440 rows=9.00 loops=1)
         Buffers: shared hit=155
-        ->  Hash Join  (cost=4.38..281.01 rows=2 width=38) (actual time=0.121..0.443 rows=9.00 loops=1)
+        ->  Hash Join  (cost=4.38..281.01 rows=2 width=38) (actual time=0.111..0.429 rows=9.00 loops=1)
               Hash Cond: (a.artist_id = f.artist_id)
               Buffers: shared hit=128
-              ->  Seq Scan on albums a  (cost=0.00..275.00 rows=615 width=34) (actual time=0.005..0.390 rows=615.00 loops=1)
+              ->  Seq Scan on albums a  (cost=0.00..275.00 rows=615 width=34) (actual time=0.004..0.378 rows=615.00 loops=1)
                     Filter: (release_date >= '2026-01-01'::date)
                     Rows Removed by Filter: 11385
                     Buffers: shared hit=125
-              ->  Hash  (cost=4.35..4.35 rows=3 width=4) (actual time=0.030..0.030 rows=3.00 loops=1)
+              ->  Hash  (cost=4.35..4.35 rows=3 width=4) (actual time=0.024..0.024 rows=3.00 loops=1)
                     Buckets: 1024  Batches: 1  Memory Usage: 9kB
                     Buffers: shared hit=3
-                    ->  Index Only Scan using artist_follows_pkey on artist_follows f  (cost=0.29..4.35 rows=3 width=4) (actual time=0.026..0.027 rows=3.00 loops=1)
+                    ->  Index Only Scan using artist_follows_pkey on artist_follows f  (cost=0.29..4.35 rows=3 width=4) (actual time=0.020..0.021 rows=3.00 loops=1)
                           Index Cond: (user_id = 1038)
                           Heap Fetches: 0
                           Index Searches: 1
@@ -56,26 +56,26 @@ Sort  (cost=282.24..282.24 rows=2 width=48) (actual time=0.464..0.465 rows=9.00 
               Buffers: shared hit=27
 Planning:
   Buffers: shared hit=253
-Planning Time: 0.389 ms
-Execution Time: 0.495 ms
+Planning Time: 0.380 ms
+Execution Time: 0.479 ms
 === R11 run 3 ===
-Sort  (cost=282.24..282.24 rows=2 width=48) (actual time=0.429..0.429 rows=9.00 loops=1)
+Sort  (cost=282.24..282.24 rows=2 width=48) (actual time=0.426..0.427 rows=9.00 loops=1)
   Sort Key: a.release_date DESC
   Sort Method: quicksort  Memory: 25kB
   Buffers: shared hit=158
-  ->  Nested Loop  (cost=4.66..282.23 rows=2 width=48) (actual time=0.119..0.420 rows=9.00 loops=1)
+  ->  Nested Loop  (cost=4.66..282.23 rows=2 width=48) (actual time=0.110..0.417 rows=9.00 loops=1)
         Buffers: shared hit=155
-        ->  Hash Join  (cost=4.38..281.01 rows=2 width=38) (actual time=0.115..0.410 rows=9.00 loops=1)
+        ->  Hash Join  (cost=4.38..281.01 rows=2 width=38) (actual time=0.106..0.406 rows=9.00 loops=1)
               Hash Cond: (a.artist_id = f.artist_id)
               Buffers: shared hit=128
-              ->  Seq Scan on albums a  (cost=0.00..275.00 rows=615 width=34) (actual time=0.005..0.359 rows=615.00 loops=1)
+              ->  Seq Scan on albums a  (cost=0.00..275.00 rows=615 width=34) (actual time=0.004..0.362 rows=615.00 loops=1)
                     Filter: (release_date >= '2026-01-01'::date)
                     Rows Removed by Filter: 11385
                     Buffers: shared hit=125
-              ->  Hash  (cost=4.35..4.35 rows=3 width=4) (actual time=0.030..0.030 rows=3.00 loops=1)
+              ->  Hash  (cost=4.35..4.35 rows=3 width=4) (actual time=0.023..0.023 rows=3.00 loops=1)
                     Buckets: 1024  Batches: 1  Memory Usage: 9kB
                     Buffers: shared hit=3
-                    ->  Index Only Scan using artist_follows_pkey on artist_follows f  (cost=0.29..4.35 rows=3 width=4) (actual time=0.027..0.028 rows=3.00 loops=1)
+                    ->  Index Only Scan using artist_follows_pkey on artist_follows f  (cost=0.29..4.35 rows=3 width=4) (actual time=0.019..0.020 rows=3.00 loops=1)
                           Index Cond: (user_id = 1038)
                           Heap Fetches: 0
                           Index Searches: 1
@@ -86,5 +86,5 @@ Sort  (cost=282.24..282.24 rows=2 width=48) (actual time=0.429..0.429 rows=9.00 
               Buffers: shared hit=27
 Planning:
   Buffers: shared hit=253
-Planning Time: 0.372 ms
-Execution Time: 0.456 ms
+Planning Time: 0.366 ms
+Execution Time: 0.454 ms

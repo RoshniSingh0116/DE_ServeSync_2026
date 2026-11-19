@@ -1,39 +1,39 @@
 === R02 run 1 ===
-Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=2.503..2.504 rows=14.00 loops=1)
+Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=4.515..4.515 rows=14.00 loops=1)
   Sort Key: disc_no, track_no
   Sort Method: quicksort  Memory: 25kB
-  Buffers: shared hit=735
-  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.313..2.491 rows=14.00 loops=1)
+  Buffers: shared hit=18 read=717
+  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=1.527..4.504 rows=14.00 loops=1)
         Filter: (album_id = 1469)
         Rows Removed by Filter: 67794
-        Buffers: shared hit=732
+        Buffers: shared hit=15 read=717
 Planning:
   Buffers: shared hit=79
-Planning Time: 0.160 ms
-Execution Time: 2.524 ms
+Planning Time: 0.156 ms
+Execution Time: 4.533 ms
 === R02 run 2 ===
-Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=2.157..2.157 rows=14.00 loops=1)
+Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=1.668..1.668 rows=14.00 loops=1)
   Sort Key: disc_no, track_no
   Sort Method: quicksort  Memory: 25kB
   Buffers: shared hit=735
-  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.291..2.144 rows=14.00 loops=1)
+  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.220..1.658 rows=14.00 loops=1)
         Filter: (album_id = 1469)
         Rows Removed by Filter: 67794
         Buffers: shared hit=732
 Planning:
   Buffers: shared hit=79
-Planning Time: 0.178 ms
-Execution Time: 2.179 ms
+Planning Time: 0.140 ms
+Execution Time: 1.684 ms
 === R02 run 3 ===
-Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=2.042..2.043 rows=14.00 loops=1)
+Sort  (cost=1579.70..1579.72 rows=7 width=28) (actual time=1.719..1.720 rows=14.00 loops=1)
   Sort Key: disc_no, track_no
   Sort Method: quicksort  Memory: 25kB
   Buffers: shared hit=735
-  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.266..2.031 rows=14.00 loops=1)
+  ->  Seq Scan on tracks  (cost=0.00..1579.60 rows=7 width=28) (actual time=0.226..1.710 rows=14.00 loops=1)
         Filter: (album_id = 1469)
         Rows Removed by Filter: 67794
         Buffers: shared hit=732
 Planning:
   Buffers: shared hit=79
-Planning Time: 0.175 ms
-Execution Time: 2.064 ms
+Planning Time: 0.142 ms
+Execution Time: 1.737 ms
