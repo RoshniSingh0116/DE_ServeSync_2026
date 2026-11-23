@@ -1,0 +1,93 @@
+=== R12 run 1 ===
+Limit  (cost=1001.31..2298.26 rows=200 width=20) (actual time=171.170..172.559 rows=200.00 loops=1)
+  Buffers: shared hit=66973 read=20176 written=3
+  ->  Gather Merge  (cost=1001.31..1237348.83 rows=190655 width=20) (actual time=171.169..172.551 rows=200.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=66973 read=20176 written=3
+        ->  Nested Loop  (cost=1.28..1214342.48 rows=79440 width=20) (actual time=8.796..115.741 rows=134.33 loops=3)
+              Buffers: shared hit=66973 read=20176 written=3
+              ->  Nested Loop  (cost=0.86..1102461.90 rows=238319 width=20) (actual time=1.012..86.209 rows=702.33 loops=3)
+                    Buffers: shared hit=61810 read=16909 written=3
+                    ->  Parallel Index Only Scan using idx_streams_started_at_covering on streams s  (cost=0.43..144750.86 rows=2083201 width=20) (actual time=0.022..0.385 rows=6551.00 loops=3)
+                          Heap Fetches: 67
+                          Index Searches: 1
+                          Buffers: shared hit=105
+                    ->  Index Scan using tracks_pkey on tracks t  (cost=0.43..0.46 rows=1 width=4) (actual time=0.013..0.013 rows=0.11 loops=19653)
+                          Index Cond: (track_id = s.track_id)
+                          Filter: explicit
+                          Rows Removed by Filter: 1
+                          Index Searches: 19653
+                          Buffers: shared hit=61705 read=16909 written=3
+              ->  Index Scan using users_pkey on users u  (cost=0.42..0.46 rows=1 width=8) (actual time=0.042..0.042 rows=0.19 loops=2107)
+                    Index Cond: (user_id = s.user_id)
+                    Filter: ((s.started_at)::date < ((birth_date + '18 years'::interval))::date)
+                    Rows Removed by Filter: 1
+                    Index Searches: 2107
+                    Buffers: shared hit=5163 read=3267
+Planning:
+  Buffers: shared hit=440 read=11
+Planning Time: 2.254 ms
+Execution Time: 172.607 ms
+=== R12 run 2 ===
+Limit  (cost=1001.31..2298.26 rows=200 width=20) (actual time=35.871..37.284 rows=200.00 loops=1)
+  Buffers: shared hit=78960 read=8137 written=4
+  ->  Gather Merge  (cost=1001.31..1237348.83 rows=190655 width=20) (actual time=35.870..37.277 rows=200.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=78960 read=8137 written=4
+        ->  Nested Loop  (cost=1.28..1214342.48 rows=79440 width=20) (actual time=0.458..21.342 rows=134.33 loops=3)
+              Buffers: shared hit=78960 read=8137 written=4
+              ->  Nested Loop  (cost=0.86..1102461.90 rows=238319 width=20) (actual time=0.083..18.171 rows=701.67 loops=3)
+                    Buffers: shared hit=72748 read=5927 written=2
+                    ->  Parallel Index Only Scan using idx_streams_started_at_covering on streams s  (cost=0.43..144750.86 rows=2083201 width=20) (actual time=0.018..0.327 rows=6547.33 loops=3)
+                          Heap Fetches: 67
+                          Index Searches: 1
+                          Buffers: shared hit=88 read=17
+                    ->  Index Scan using tracks_pkey on tracks t  (cost=0.43..0.46 rows=1 width=4) (actual time=0.003..0.003 rows=0.11 loops=19642)
+                          Index Cond: (track_id = s.track_id)
+                          Filter: explicit
+                          Rows Removed by Filter: 1
+                          Index Searches: 19642
+                          Buffers: shared hit=72660 read=5910 written=2
+              ->  Index Scan using users_pkey on users u  (cost=0.42..0.46 rows=1 width=8) (actual time=0.004..0.004 rows=0.19 loops=2105)
+                    Index Cond: (user_id = s.user_id)
+                    Filter: ((s.started_at)::date < ((birth_date + '18 years'::interval))::date)
+                    Rows Removed by Filter: 1
+                    Index Searches: 2105
+                    Buffers: shared hit=6212 read=2210 written=2
+Planning:
+  Buffers: shared hit=445 read=6
+Planning Time: 0.666 ms
+Execution Time: 37.316 ms
+=== R12 run 3 ===
+Limit  (cost=1001.31..2298.26 rows=200 width=20) (actual time=29.631..31.446 rows=200.00 loops=1)
+  Buffers: shared hit=78764 read=8056
+  ->  Gather Merge  (cost=1001.31..1237348.83 rows=190655 width=20) (actual time=29.630..31.438 rows=200.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=78764 read=8056
+        ->  Nested Loop  (cost=1.28..1214342.48 rows=79440 width=20) (actual time=0.434..18.190 rows=134.33 loops=3)
+              Buffers: shared hit=78764 read=8056
+              ->  Nested Loop  (cost=0.86..1102461.90 rows=238319 width=20) (actual time=0.097..15.453 rows=701.67 loops=3)
+                    Buffers: shared hit=72541 read=5857
+                    ->  Parallel Index Only Scan using idx_streams_started_at_covering on streams s  (cost=0.43..144750.86 rows=2083201 width=20) (actual time=0.040..0.329 rows=6524.33 loops=3)
+                          Heap Fetches: 67
+                          Index Searches: 1
+                          Buffers: shared hit=13 read=91
+                    ->  Index Scan using tracks_pkey on tracks t  (cost=0.43..0.46 rows=1 width=4) (actual time=0.002..0.002 rows=0.11 loops=19573)
+                          Index Cond: (track_id = s.track_id)
+                          Filter: explicit
+                          Rows Removed by Filter: 1
+                          Index Searches: 19573
+                          Buffers: shared hit=72528 read=5766
+              ->  Index Scan using users_pkey on users u  (cost=0.42..0.46 rows=1 width=8) (actual time=0.004..0.004 rows=0.19 loops=2105)
+                    Index Cond: (user_id = s.user_id)
+                    Filter: ((s.started_at)::date < ((birth_date + '18 years'::interval))::date)
+                    Rows Removed by Filter: 1
+                    Index Searches: 2105
+                    Buffers: shared hit=6223 read=2199
+Planning:
+  Buffers: shared hit=424 read=27
+Planning Time: 1.525 ms
+Execution Time: 31.478 ms

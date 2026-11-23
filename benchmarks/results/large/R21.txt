@@ -1,0 +1,45 @@
+=== R21 run 1 ===
+Nested Loop  (cost=0.85..16.88 rows=1 width=45) (actual time=0.314..0.314 rows=0.00 loops=1)
+  Buffers: shared read=3
+  ->  Index Only Scan using idx_tracks_isrc_covering on tracks t  (cost=0.43..8.45 rows=1 width=23) (actual time=0.314..0.314 rows=0.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::text)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared read=3
+  ->  Index Scan using albums_pkey on albums a  (cost=0.42..8.44 rows=1 width=30) (never executed)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=291 read=19
+Planning Time: 1.820 ms
+Execution Time: 0.335 ms
+=== R21 run 2 ===
+Nested Loop  (cost=0.85..16.88 rows=1 width=45) (actual time=0.010..0.010 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Only Scan using idx_tracks_isrc_covering on tracks t  (cost=0.43..8.45 rows=1 width=23) (actual time=0.010..0.010 rows=0.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::text)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+  ->  Index Scan using albums_pkey on albums a  (cost=0.42..8.44 rows=1 width=30) (never executed)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=310
+Planning Time: 0.480 ms
+Execution Time: 0.030 ms
+=== R21 run 3 ===
+Nested Loop  (cost=0.85..16.88 rows=1 width=45) (actual time=0.010..0.010 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Only Scan using idx_tracks_isrc_covering on tracks t  (cost=0.43..8.45 rows=1 width=23) (actual time=0.010..0.010 rows=0.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::text)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+  ->  Index Scan using albums_pkey on albums a  (cost=0.42..8.44 rows=1 width=30) (never executed)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=310
+Planning Time: 0.494 ms
+Execution Time: 0.030 ms

@@ -1,0 +1,72 @@
+=== W05 run 1 ===
+Delete on playlist_tracks  (cost=31.14..45675.27 rows=0 width=0) (actual time=134.888..134.889 rows=0.00 loops=1)
+  Buffers: shared hit=57 read=15325 dirtied=29
+  InitPlan 1
+    ->  Index Scan using tracks_pkey on tracks tracks_1  (cost=0.43..8.45 rows=1 width=4) (actual time=0.005..0.005 rows=1.00 loops=1)
+          Index Cond: (track_id = 1389)
+          Index Searches: 1
+          Buffers: shared hit=4
+  ->  Hash Join  (cost=22.70..45666.82 rows=16 width=12) (actual time=0.935..134.736 rows=29.00 loops=1)
+        Hash Cond: (playlist_tracks.track_id = tracks.track_id)
+        Buffers: shared hit=28 read=15325
+        ->  Seq Scan on playlist_tracks  (cost=0.00..39344.08 rows=2400008 width=10) (actual time=0.032..80.572 rows=2400008.00 loops=1)
+              Buffers: shared hit=21 read=15323
+        ->  Hash  (cost=22.58..22.58 rows=9 width=10) (actual time=0.025..0.025 rows=13.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=7 read=2
+              ->  Index Scan using idx_tracks_album_disc_track_covering on tracks  (cost=0.43..22.58 rows=9 width=10) (actual time=0.016..0.021 rows=13.00 loops=1)
+                    Index Cond: (album_id = (InitPlan 1).col1)
+                    Index Searches: 1
+                    Buffers: shared hit=7 read=2
+Planning:
+  Buffers: shared hit=288
+Planning Time: 0.574 ms
+Execution Time: 134.953 ms
+=== W05 run 2 ===
+Delete on playlist_tracks  (cost=31.14..45675.27 rows=0 width=0) (actual time=133.819..133.820 rows=0.00 loops=1)
+  Buffers: shared hit=217 read=15165
+  InitPlan 1
+    ->  Index Scan using tracks_pkey on tracks tracks_1  (cost=0.43..8.45 rows=1 width=4) (actual time=0.006..0.006 rows=1.00 loops=1)
+          Index Cond: (track_id = 1389)
+          Index Searches: 1
+          Buffers: shared hit=4
+  ->  Hash Join  (cost=22.70..45666.82 rows=16 width=12) (actual time=0.820..133.792 rows=29.00 loops=1)
+        Hash Cond: (playlist_tracks.track_id = tracks.track_id)
+        Buffers: shared hit=188 read=15165
+        ->  Seq Scan on playlist_tracks  (cost=0.00..39344.08 rows=2400008 width=10) (actual time=0.040..80.063 rows=2400008.00 loops=1)
+              Buffers: shared hit=179 read=15165
+        ->  Hash  (cost=22.58..22.58 rows=9 width=10) (actual time=0.020..0.020 rows=13.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=9
+              ->  Index Scan using idx_tracks_album_disc_track_covering on tracks  (cost=0.43..22.58 rows=9 width=10) (actual time=0.013..0.016 rows=13.00 loops=1)
+                    Index Cond: (album_id = (InitPlan 1).col1)
+                    Index Searches: 1
+                    Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=288
+Planning Time: 0.425 ms
+Execution Time: 133.877 ms
+=== W05 run 3 ===
+Delete on playlist_tracks  (cost=31.14..45675.27 rows=0 width=0) (actual time=133.988..133.990 rows=0.00 loops=1)
+  Buffers: shared hit=311 read=15071
+  InitPlan 1
+    ->  Index Scan using tracks_pkey on tracks tracks_1  (cost=0.43..8.45 rows=1 width=4) (actual time=0.004..0.005 rows=1.00 loops=1)
+          Index Cond: (track_id = 1389)
+          Index Searches: 1
+          Buffers: shared hit=4
+  ->  Hash Join  (cost=22.70..45666.82 rows=16 width=12) (actual time=0.862..133.961 rows=29.00 loops=1)
+        Hash Cond: (playlist_tracks.track_id = tracks.track_id)
+        Buffers: shared hit=282 read=15071
+        ->  Seq Scan on playlist_tracks  (cost=0.00..39344.08 rows=2400008 width=10) (actual time=0.027..80.148 rows=2400008.00 loops=1)
+              Buffers: shared hit=273 read=15071
+        ->  Hash  (cost=22.58..22.58 rows=9 width=10) (actual time=0.017..0.017 rows=13.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=9
+              ->  Index Scan using idx_tracks_album_disc_track_covering on tracks  (cost=0.43..22.58 rows=9 width=10) (actual time=0.010..0.014 rows=13.00 loops=1)
+                    Index Cond: (album_id = (InitPlan 1).col1)
+                    Index Searches: 1
+                    Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=288
+Planning Time: 0.476 ms
+Execution Time: 134.051 ms

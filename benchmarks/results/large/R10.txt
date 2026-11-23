@@ -1,0 +1,66 @@
+=== R10 run 1 ===
+GroupAggregate  (cost=94473.18..97884.56 rows=24998 width=18) (actual time=121.488..150.939 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=939 read=50241, temp read=692 written=695
+  ->  Gather Merge  (cost=94473.18..97384.60 rows=24998 width=10) (actual time=121.152..142.355 rows=274725.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=939 read=50241, temp read=692 written=695
+        ->  Sort  (cost=93473.15..93499.19 rows=10416 width=10) (actual time=119.223..121.956 rows=91575.00 loops=3)
+              Sort Key: ((started_at)::date), platform
+              Sort Method: external merge  Disk: 1968kB
+              Buffers: shared hit=939 read=50241, temp read=692 written=695
+              Worker 0:  Sort Method: external merge  Disk: 1816kB
+              Worker 1:  Sort Method: external merge  Disk: 1752kB
+              ->  Parallel Seq Scan on streams  (cost=0.00..92778.06 rows=10416 width=10) (actual time=92.892..106.084 rows=91575.00 loops=3)
+                    Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    Rows Removed by Filter: 1575092
+                    Buffers: shared hit=847 read=50241
+Planning:
+  Buffers: shared hit=183
+Planning Time: 0.256 ms
+Execution Time: 151.353 ms
+=== R10 run 2 ===
+GroupAggregate  (cost=94473.18..97884.56 rows=24998 width=18) (actual time=116.797..146.216 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=1221 read=49959, temp read=692 written=695
+  ->  Gather Merge  (cost=94473.18..97384.60 rows=24998 width=10) (actual time=116.448..137.854 rows=274725.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=1221 read=49959, temp read=692 written=695
+        ->  Sort  (cost=93473.15..93499.19 rows=10416 width=10) (actual time=114.869..117.690 rows=91575.00 loops=3)
+              Sort Key: ((started_at)::date), platform
+              Sort Method: external merge  Disk: 1848kB
+              Buffers: shared hit=1221 read=49959, temp read=692 written=695
+              Worker 0:  Sort Method: external merge  Disk: 1824kB
+              Worker 1:  Sort Method: external merge  Disk: 1864kB
+              ->  Parallel Seq Scan on streams  (cost=0.00..92778.06 rows=10416 width=10) (actual time=90.147..102.795 rows=91575.00 loops=3)
+                    Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    Rows Removed by Filter: 1575092
+                    Buffers: shared hit=1129 read=49959
+Planning:
+  Buffers: shared hit=183
+Planning Time: 0.258 ms
+Execution Time: 146.600 ms
+=== R10 run 3 ===
+GroupAggregate  (cost=94473.18..97884.56 rows=24998 width=18) (actual time=111.801..142.913 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=1503 read=49677, temp read=692 written=695
+  ->  Gather Merge  (cost=94473.18..97384.60 rows=24998 width=10) (actual time=111.473..133.783 rows=274725.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=1503 read=49677, temp read=692 written=695
+        ->  Sort  (cost=93473.15..93499.19 rows=10416 width=10) (actual time=109.807..112.754 rows=91575.00 loops=3)
+              Sort Key: ((started_at)::date), platform
+              Sort Method: external merge  Disk: 1888kB
+              Buffers: shared hit=1503 read=49677, temp read=692 written=695
+              Worker 0:  Sort Method: external merge  Disk: 1888kB
+              Worker 1:  Sort Method: external merge  Disk: 1760kB
+              ->  Parallel Seq Scan on streams  (cost=0.00..92778.06 rows=10416 width=10) (actual time=86.611..98.745 rows=91575.00 loops=3)
+                    Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    Rows Removed by Filter: 1575092
+                    Buffers: shared hit=1411 read=49677
+Planning:
+  Buffers: shared hit=183
+Planning Time: 0.251 ms
+Execution Time: 143.337 ms

@@ -1,0 +1,63 @@
+=== R03 run 1 ===
+Limit  (cost=24766.87..24769.19 rows=20 width=23) (actual time=168.941..168.954 rows=20.00 loops=1)
+  Buffers: shared hit=110 read=14644
+  ->  Gather Merge  (cost=24766.87..45791.74 rows=180523 width=23) (actual time=168.941..168.952 rows=20.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=110 read=14644
+        ->  Sort  (cost=23766.84..23954.89 rows=75218 width=23) (actual time=166.736..166.737 rows=20.00 loops=3)
+              Sort Key: popularity DESC
+              Sort Method: top-N heapsort  Memory: 27kB
+              Buffers: shared hit=110 read=14644
+              Worker 0:  Sort Method: top-N heapsort  Memory: 27kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 27kB
+              ->  Parallel Seq Scan on tracks  (cost=0.00..21765.32 rows=75218 width=23) (actual time=0.042..162.948 rows=60981.67 loops=3)
+                    Filter: ((title)::text ~~* '%love%'::text)
+                    Rows Removed by Filter: 392479
+                    Buffers: shared hit=36 read=14644
+Planning:
+  Buffers: shared hit=137 dirtied=1
+Planning Time: 0.293 ms
+Execution Time: 168.972 ms
+=== R03 run 2 ===
+Limit  (cost=24766.87..24769.19 rows=20 width=23) (actual time=172.014..172.609 rows=20.00 loops=1)
+  Buffers: shared hit=392 read=14362
+  ->  Gather Merge  (cost=24766.87..45791.74 rows=180523 width=23) (actual time=172.013..172.607 rows=20.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=392 read=14362
+        ->  Sort  (cost=23766.84..23954.89 rows=75218 width=23) (actual time=170.469..170.470 rows=20.00 loops=3)
+              Sort Key: popularity DESC
+              Sort Method: top-N heapsort  Memory: 27kB
+              Buffers: shared hit=392 read=14362
+              Worker 0:  Sort Method: top-N heapsort  Memory: 27kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 27kB
+              ->  Parallel Seq Scan on tracks  (cost=0.00..21765.32 rows=75218 width=23) (actual time=0.041..166.828 rows=60981.67 loops=3)
+                    Filter: ((title)::text ~~* '%love%'::text)
+                    Rows Removed by Filter: 392479
+                    Buffers: shared hit=318 read=14362
+Planning:
+  Buffers: shared hit=137
+Planning Time: 0.264 ms
+Execution Time: 172.626 ms
+=== R03 run 3 ===
+Limit  (cost=24766.87..24769.19 rows=20 width=23) (actual time=163.690..164.172 rows=20.00 loops=1)
+  Buffers: shared hit=674 read=14080
+  ->  Gather Merge  (cost=24766.87..45791.74 rows=180523 width=23) (actual time=163.690..164.170 rows=20.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=674 read=14080
+        ->  Sort  (cost=23766.84..23954.89 rows=75218 width=23) (actual time=162.267..162.268 rows=20.00 loops=3)
+              Sort Key: popularity DESC
+              Sort Method: top-N heapsort  Memory: 27kB
+              Buffers: shared hit=674 read=14080
+              Worker 0:  Sort Method: top-N heapsort  Memory: 27kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 27kB
+              ->  Parallel Seq Scan on tracks  (cost=0.00..21765.32 rows=75218 width=23) (actual time=0.044..158.945 rows=60981.67 loops=3)
+                    Filter: ((title)::text ~~* '%love%'::text)
+                    Rows Removed by Filter: 392479
+                    Buffers: shared hit=600 read=14080
+Planning:
+  Buffers: shared hit=137
+Planning Time: 0.255 ms
+Execution Time: 164.188 ms

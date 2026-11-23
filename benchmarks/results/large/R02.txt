@@ -1,0 +1,30 @@
+=== R02 run 1 ===
+Index Only Scan using idx_tracks_album_disc_track_covering on tracks  (cost=0.43..8.58 rows=9 width=28) (actual time=0.477..0.478 rows=2.00 loops=1)
+  Index Cond: (album_id = 1469)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=1 read=3
+Planning:
+  Buffers: shared hit=144 read=2 dirtied=2
+Planning Time: 0.313 ms
+Execution Time: 0.495 ms
+=== R02 run 2 ===
+Index Only Scan using idx_tracks_album_disc_track_covering on tracks  (cost=0.43..8.58 rows=9 width=28) (actual time=0.029..0.029 rows=2.00 loops=1)
+  Index Cond: (album_id = 1469)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=146
+Planning Time: 0.209 ms
+Execution Time: 0.043 ms
+=== R02 run 3 ===
+Index Only Scan using idx_tracks_album_disc_track_covering on tracks  (cost=0.43..8.58 rows=9 width=28) (actual time=0.026..0.026 rows=2.00 loops=1)
+  Index Cond: (album_id = 1469)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=146
+Planning Time: 0.215 ms
+Execution Time: 0.042 ms

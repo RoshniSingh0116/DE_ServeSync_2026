@@ -1,0 +1,31 @@
+query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
+R01,READ,27.591,22.652,20.362,39.758,Index Only Scan using idx_streams_started_at_covering on streams | Seq Scan on track_artists | Index Scan using tracks_pkey on tracks
+R02,READ,0.193,0.043,0.042,0.495,Index Only Scan using idx_tracks_album_disc_track_covering on tracks
+R03,READ,168.595,168.972,164.188,172.626,Seq Scan on tracks
+R04,READ,0.465,0.067,0.066,1.261,Index Only Scan using idx_streams_user_started_at_covering on streams | Index Scan using tracks_pkey on tracks
+R05,READ,1.185,0.140,0.138,3.276,Index Scan using playlist_tracks_pkey on playlist_tracks | Index Scan using tracks_pkey on tracks | Index Scan using track_artists_pkey on track_artists | Index Scan using artists_pkey on artists
+R06,READ,0.213,0.056,0.054,0.530,Index Scan using liked_tracks_pkey on liked_tracks | Index Scan using tracks_pkey on tracks
+R07,READ,79.064,79.029,77.897,80.265,Seq Scan on track_artists | Index Only Scan using idx_streams_started_at_covering on streams
+R08,READ,114.287,112.472,110.667,119.722,Seq Scan on streams | Seq Scan on track_artists | Index Scan using tracks_pkey on tracks
+R09,READ,0.769,0.130,0.126,2.052,Index Only Scan using idx_streams_user_started_at_covering on streams | Index Scan using track_artists_pkey on track_artists | Index Scan using artists_pkey on artists
+R10,READ,147.097,146.600,143.337,151.353,Seq Scan on streams
+R11,READ,0.634,0.100,0.089,1.714,Index Only Scan using artist_follows_pkey on artist_follows | Index Only Scan using idx_albums_artist_release_covering on albums | Index Scan using artists_pkey on artists
+R12,READ,80.467,37.316,31.478,172.607,Index Only Scan using idx_streams_started_at_covering on streams | Index Scan using tracks_pkey on tracks | Index Scan using users_pkey on users
+R13,READ,43.937,37.514,36.765,57.533,Seq Scan on playlists | Index Only Scan using idx_streams_playlist_id_not_null on streams
+R14,READ,93.927,91.949,91.567,98.266,Seq Scan on playlist_tracks | Seq Scan on playlists
+R15,READ,23.493,15.214,14.951,40.314,Seq Scan on artist_follows | Index Only Scan using artist_follows_pkey on artist_follows | Index Scan using artists_pkey on artists
+R16,READ,124.340,120.277,111.913,140.830,Seq Scan on track_artists | Index Only Scan using idx_streams_started_at_covering on streams
+R17,READ,106.998,97.204,95.506,128.283,Index Only Scan using idx_streams_started_at_covering on streams | Seq Scan on users
+R18,READ,192.823,190.621,190.031,197.816,Seq Scan on streams
+R19,READ,813.176,816.055,797.768,825.704,Seq Scan on streams | Seq Scan on track_artists | Seq Scan on artists
+R20,READ,1611.201,1551.341,1532.587,1749.676,Seq Scan on streams | Seq Scan on users
+R21,READ,0.132,0.030,0.030,0.335,Index Only Scan using idx_tracks_isrc_covering on tracks | Index Scan using albums_pkey on albums
+R22,READ,252.572,250.288,246.473,260.955,Index Only Scan using idx_playlist_tracks_playlist_track_covering on playlist_tracks
+R23,READ,11.469,11.313,11.138,11.957,Index Only Scan using idx_streams_started_at_covering on streams
+R24,READ,95.591,95.456,93.289,98.028,Seq Scan on tracks | Seq Scan on albums
+R25,READ,140.571,120.823,118.478,182.412,Seq Scan on streams | Seq Scan on albums | Index Scan using idx_tracks_album_disc_track_covering on tracks
+W01,WRITE,1.008,0.653,0.634,1.737,(no scan)
+W02,WRITE,0.916,0.555,0.541,1.652,(no scan)
+W03,WRITE,0.778,0.554,0.532,1.247,Index Scan using playlists_pkey on playlists | Index Only Scan using playlist_tracks_pkey on playlist_tracks
+W04,WRITE,918.740,916.690,887.904,951.625,Index Scan using artists_pkey on artists | Seq Scan on track_artists | Seq Scan on artists | Index Only Scan using idx_streams_started_at_covering on streams
+W05,WRITE,134.294,134.051,133.877,134.953,Index Scan using tracks_pkey on tracks | Seq Scan on playlist_tracks | Index Scan using idx_tracks_album_disc_track_covering on tracks

@@ -1,0 +1,90 @@
+=== R17 run 1 ===
+Sort  (cost=39117.31..39223.17 rows=42346 width=12) (actual time=95.322..95.328 rows=324.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 35kB
+  Buffers: shared hit=1485 read=6924, temp read=793 written=793
+  ->  HashAggregate  (cost=34275.07..35863.03 rows=42346 width=12) (actual time=92.482..95.303 rows=324.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 5913kB
+        Rows Removed by Filter: 97816
+        Buffers: shared hit=1482 read=6924, temp read=793 written=793
+        ->  Hash Join  (cost=18910.18..33639.89 rows=127037 width=4) (actual time=40.139..82.175 rows=122138.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=1482 read=6924, temp read=793 written=793
+              ->  Index Only Scan using idx_streams_started_at_covering on streams s  (cost=0.43..10696.44 rows=286743 width=4) (actual time=0.009..11.181 rows=274725.00 loops=1)
+                    Index Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                    Heap Fetches: 67
+                    Index Searches: 1
+                    Buffers: shared hit=1269 read=89
+              ->  Hash  (cost=14548.00..14548.00 rows=265820 width=4) (actual time=40.009..40.010 rows=266994.00 loops=1)
+                    Buckets: 262144  Batches: 2  Memory Usage: 6746kB
+                    Buffers: shared hit=213 read=6835, temp written=390
+                    ->  Seq Scan on users u  (cost=0.00..14548.00 rows=265820 width=4) (actual time=0.012..25.604 rows=266994.00 loops=1)
+                          Filter: ((subscription)::text = 'FREE'::text)
+                          Rows Removed by Filter: 333006
+                          Buffers: shared hit=213 read=6835
+Planning:
+  Buffers: shared hit=252 read=8
+Planning Time: 0.507 ms
+Execution Time: 95.506 ms
+=== R17 run 2 ===
+Sort  (cost=39117.31..39223.17 rows=42346 width=12) (actual time=97.037..97.044 rows=324.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 35kB
+  Buffers: shared hit=1668 read=6741, temp read=793 written=793
+  ->  HashAggregate  (cost=34275.07..35863.03 rows=42346 width=12) (actual time=94.231..97.019 rows=324.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 5913kB
+        Rows Removed by Filter: 97816
+        Buffers: shared hit=1665 read=6741, temp read=793 written=793
+        ->  Hash Join  (cost=18910.18..33639.89 rows=127037 width=4) (actual time=39.752..83.334 rows=122138.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=1665 read=6741, temp read=793 written=793
+              ->  Index Only Scan using idx_streams_started_at_covering on streams s  (cost=0.43..10696.44 rows=286743 width=4) (actual time=0.008..10.886 rows=274725.00 loops=1)
+                    Index Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                    Heap Fetches: 67
+                    Index Searches: 1
+                    Buffers: shared hit=1358
+              ->  Hash  (cost=14548.00..14548.00 rows=265820 width=4) (actual time=39.611..39.612 rows=266994.00 loops=1)
+                    Buckets: 262144  Batches: 2  Memory Usage: 6746kB
+                    Buffers: shared hit=307 read=6741, temp written=390
+                    ->  Seq Scan on users u  (cost=0.00..14548.00 rows=265820 width=4) (actual time=0.015..25.224 rows=266994.00 loops=1)
+                          Filter: ((subscription)::text = 'FREE'::text)
+                          Rows Removed by Filter: 333006
+                          Buffers: shared hit=307 read=6741
+Planning:
+  Buffers: shared hit=260
+Planning Time: 0.504 ms
+Execution Time: 97.204 ms
+=== R17 run 3 ===
+Sort  (cost=39117.31..39223.17 rows=42346 width=12) (actual time=128.002..128.011 rows=324.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 35kB
+  Buffers: shared hit=1762 read=6647, temp read=793 written=793
+  ->  HashAggregate  (cost=34275.07..35863.03 rows=42346 width=12) (actual time=125.017..127.981 rows=324.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 5913kB
+        Rows Removed by Filter: 97816
+        Buffers: shared hit=1759 read=6647, temp read=793 written=793
+        ->  Hash Join  (cost=18910.18..33639.89 rows=127037 width=4) (actual time=43.888..112.806 rows=122138.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=1759 read=6647, temp read=793 written=793
+              ->  Index Only Scan using idx_streams_started_at_covering on streams s  (cost=0.43..10696.44 rows=286743 width=4) (actual time=0.008..11.410 rows=274725.00 loops=1)
+                    Index Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                    Heap Fetches: 67
+                    Index Searches: 1
+                    Buffers: shared hit=1358
+              ->  Hash  (cost=14548.00..14548.00 rows=265820 width=4) (actual time=43.761..43.762 rows=266994.00 loops=1)
+                    Buckets: 262144  Batches: 2  Memory Usage: 6746kB
+                    Buffers: shared hit=401 read=6647, temp written=390
+                    ->  Seq Scan on users u  (cost=0.00..14548.00 rows=265820 width=4) (actual time=0.014..28.371 rows=266994.00 loops=1)
+                          Filter: ((subscription)::text = 'FREE'::text)
+                          Rows Removed by Filter: 333006
+                          Buffers: shared hit=401 read=6647
+Planning:
+  Buffers: shared hit=260
+Planning Time: 0.465 ms
+Execution Time: 128.283 ms

@@ -1,0 +1,81 @@
+=== R20 run 1 ===
+Sort  (cost=1789433.37..1801932.57 rows=4999683 width=52) (actual time=1749.462..1749.466 rows=96.00 loops=1)
+  Sort Key: hourly_stats.country_code, hourly_stats.hour
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=2092 read=56050, temp read=16192 written=16192
+  CTE hourly_stats
+    ->  HashAggregate  (cost=650741.76..791357.85 rows=4999683 width=43) (actual time=1749.269..1749.395 rows=96.00 loops=1)
+          Group Key: u.country_code, EXTRACT(hour FROM s.started_at)
+          Planned Partitions: 128  Batches: 1  Memory Usage: 1057kB
+          Buffers: shared hit=2086 read=56050, temp read=16192 written=16192
+          ->  Hash Join  (cost=22892.00..200770.29 rows=4999683 width=35) (actual time=60.588..1334.188 rows=5000000.00 loops=1)
+                Hash Cond: (s.user_id = u.user_id)
+                Buffers: shared hit=2086 read=56050, temp read=16192 written=16192
+                ->  Seq Scan on streams s  (cost=0.00..101084.83 rows=4999683 width=12) (actual time=0.039..220.492 rows=5000000.00 loops=1)
+                      Buffers: shared hit=1693 read=49395
+                ->  Hash  (cost=13048.00..13048.00 rows=600000 width=7) (actual time=60.229..60.229 rows=600000.00 loops=1)
+                      Buckets: 262144  Batches: 4  Memory Usage: 7906kB
+                      Buffers: shared hit=393 read=6655, temp written=1537
+                      ->  Seq Scan on users u  (cost=0.00..13048.00 rows=600000 width=7) (actual time=0.010..23.962 rows=600000.00 loops=1)
+                            Buffers: shared hit=393 read=6655
+  ->  CTE Scan on hourly_stats  (cost=0.00..99993.66 rows=4999683 width=52) (actual time=1749.272..1749.404 rows=96.00 loops=1)
+        Storage: Memory  Maximum Storage: 20kB
+        Buffers: shared hit=2086 read=56050, temp read=16192 written=16192
+Planning:
+  Buffers: shared hit=335 read=1
+Planning Time: 1.592 ms
+Execution Time: 1749.676 ms
+=== R20 run 2 ===
+Sort  (cost=1789433.37..1801932.57 rows=4999683 width=52) (actual time=1551.189..1551.191 rows=96.00 loops=1)
+  Sort Key: hourly_stats.country_code, hourly_stats.hour
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=2280 read=55862, temp read=16192 written=16192
+  CTE hourly_stats
+    ->  HashAggregate  (cost=650741.76..791357.85 rows=4999683 width=43) (actual time=1551.006..1551.128 rows=96.00 loops=1)
+          Group Key: u.country_code, EXTRACT(hour FROM s.started_at)
+          Planned Partitions: 128  Batches: 1  Memory Usage: 1057kB
+          Buffers: shared hit=2274 read=55862, temp read=16192 written=16192
+          ->  Hash Join  (cost=22892.00..200770.29 rows=4999683 width=35) (actual time=55.381..1140.330 rows=5000000.00 loops=1)
+                Hash Cond: (s.user_id = u.user_id)
+                Buffers: shared hit=2274 read=55862, temp read=16192 written=16192
+                ->  Seq Scan on streams s  (cost=0.00..101084.83 rows=4999683 width=12) (actual time=0.040..209.329 rows=5000000.00 loops=1)
+                      Buffers: shared hit=1787 read=49301
+                ->  Hash  (cost=13048.00..13048.00 rows=600000 width=7) (actual time=55.035..55.035 rows=600000.00 loops=1)
+                      Buckets: 262144  Batches: 4  Memory Usage: 7906kB
+                      Buffers: shared hit=487 read=6561, temp written=1537
+                      ->  Seq Scan on users u  (cost=0.00..13048.00 rows=600000 width=7) (actual time=0.006..23.170 rows=600000.00 loops=1)
+                            Buffers: shared hit=487 read=6561
+  ->  CTE Scan on hourly_stats  (cost=0.00..99993.66 rows=4999683 width=52) (actual time=1551.008..1551.137 rows=96.00 loops=1)
+        Storage: Memory  Maximum Storage: 20kB
+        Buffers: shared hit=2274 read=55862, temp read=16192 written=16192
+Planning:
+  Buffers: shared hit=336
+Planning Time: 0.500 ms
+Execution Time: 1551.341 ms
+=== R20 run 3 ===
+Sort  (cost=1789433.37..1801932.57 rows=4999683 width=52) (actual time=1532.464..1532.471 rows=96.00 loops=1)
+  Sort Key: hourly_stats.country_code, hourly_stats.hour
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=2468 read=55674, temp read=16192 written=16192
+  CTE hourly_stats
+    ->  HashAggregate  (cost=650741.76..791357.85 rows=4999683 width=43) (actual time=1532.264..1532.403 rows=96.00 loops=1)
+          Group Key: u.country_code, EXTRACT(hour FROM s.started_at)
+          Planned Partitions: 128  Batches: 1  Memory Usage: 1057kB
+          Buffers: shared hit=2462 read=55674, temp read=16192 written=16192
+          ->  Hash Join  (cost=22892.00..200770.29 rows=4999683 width=35) (actual time=55.971..1126.684 rows=5000000.00 loops=1)
+                Hash Cond: (s.user_id = u.user_id)
+                Buffers: shared hit=2462 read=55674, temp read=16192 written=16192
+                ->  Seq Scan on streams s  (cost=0.00..101084.83 rows=4999683 width=12) (actual time=0.043..209.826 rows=5000000.00 loops=1)
+                      Buffers: shared hit=1881 read=49207
+                ->  Hash  (cost=13048.00..13048.00 rows=600000 width=7) (actual time=55.653..55.654 rows=600000.00 loops=1)
+                      Buckets: 262144  Batches: 4  Memory Usage: 7906kB
+                      Buffers: shared hit=581 read=6467, temp written=1537
+                      ->  Seq Scan on users u  (cost=0.00..13048.00 rows=600000 width=7) (actual time=0.006..23.412 rows=600000.00 loops=1)
+                            Buffers: shared hit=581 read=6467
+  ->  CTE Scan on hourly_stats  (cost=0.00..99993.66 rows=4999683 width=52) (actual time=1532.268..1532.410 rows=96.00 loops=1)
+        Storage: Memory  Maximum Storage: 20kB
+        Buffers: shared hit=2462 read=55674, temp read=16192 written=16192
+Planning:
+  Buffers: shared hit=336
+Planning Time: 0.559 ms
+Execution Time: 1532.587 ms
